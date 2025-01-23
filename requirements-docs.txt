@@ -1,4 +1,0 @@
-setuptools
-mkdocs
-mkdocstrings[python]
-mkdocs-material

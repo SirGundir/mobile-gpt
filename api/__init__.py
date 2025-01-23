@@ -7,7 +7,7 @@ from loguru import logger
 from .v1 import router as router_v1
 
 app = FastAPI(
-    title='DocGPT API',
+    title='MobileGPT',
     redoc_url=None
 )
 

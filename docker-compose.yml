@@ -1,15 +1,4 @@
 services:
-  db:
-    image: postgres:16.4
-    restart: unless-stopped
-    environment:
-      - POSTGRES_DB=${POSTGRES_DB}
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-    ports:
-      - 5432:5432
-    volumes:
-      - ./pgdata:/var/lib/postgresql/data
   api:
     build:
       dockerfile: api.dockerfile
@@ -23,16 +12,3 @@ services:
     volumes:
       - ./assets:/app/assets
       - ./static:/app/static
-    depends_on:
-      - db
-  admin:
-    build:
-      dockerfile: admin.dockerfile
-    env_file:
-      - .env
-    ports:
-      - 5000:5000
-    volumes:
-      - ./assets:/app/assets
-    depends_on:
-      - db
