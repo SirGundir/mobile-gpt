@@ -2,6 +2,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     jwt_secret: str
+    password: str
 
     api_link: str
     openai_api_link: str
