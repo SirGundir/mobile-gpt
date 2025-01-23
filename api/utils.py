@@ -15,7 +15,7 @@ def generate_token(username: str) -> str:
     """
     return jwt.encode(
         {
-            "user": username,
+            "username": username,
             "exp": datetime.now(tz=timezone.utc) + timedelta(days=7)
         },
         settings.jwt_secret,
