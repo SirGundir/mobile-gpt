@@ -18,8 +18,7 @@ class SimpleAskSchema(BaseModel):
     model: str = settings.default_model
 
 @router.post('')
-#async def route(schema: SimpleAskSchema, token: str = Depends(get_current_user)):
-async def route(schema: SimpleAskSchema):
+async def route(schema: SimpleAskSchema, token: str = Depends(get_current_user)):
     return {
         'status': 'ok',
         'results': await OpenAIClient().ask(

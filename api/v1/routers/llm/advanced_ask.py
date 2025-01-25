@@ -18,7 +18,7 @@ class AdvancedAskSchema(BaseModel):
     model: str = settings.default_model
 
 @router.post('')
-async def route(schema: AdvancedAskSchema):
+async def route(schema: AdvancedAskSchema, token: str = Depends(get_current_user)):
     return {
         'status': 'ok',
         'results': await OpenAIClient().advanced_ask(

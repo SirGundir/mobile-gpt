@@ -1,6 +1,8 @@
 import jwt
 from datetime import datetime, timezone, timedelta
 from typing import Annotated
+from loguru import logger
+from openai import OpenAI
 
 from fastapi import Depends, HTTPException
 from fastapi.security import OAuth2PasswordBearer
@@ -44,3 +46,15 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
             status_code=403,
             detail='Invalid token',
         )
+
+def check_openai_api() -> bool:
+    try:
+        client = OpenAI(
+            api_key=settings.openai_api_key,
+            base_url=settings.openai_api_link
+        )
+        client.models.list()
+        return True
+    except Exception as e:
+        logger.error(f"Failed to connect OpenAI API: {e}")
+        return False
