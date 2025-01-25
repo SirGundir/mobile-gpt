@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from typing import Optional
 
 from api.utils import get_current_user
-from api.services.searcher import Searcher
+from api.services import Searcher
 
 router = APIRouter(
     prefix="/search"

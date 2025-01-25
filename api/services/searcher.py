@@ -19,7 +19,9 @@ user_agents = [
 ]
 
 class Searcher:
-    async def get_page_text(self, url: str) -> str:
+
+    @staticmethod
+    async def get_page_text(url: str) -> str:
         """
         Получение контента страницы
         """
@@ -43,16 +45,17 @@ class Searcher:
     async def search(
         self,
         request: str,
-        region: Optional[str] = "ru-ru",
+        region: str = "ru-ru",
         max_results: Optional[int] = 3
     ) -> Optional[List[str]]:
        
         try:
             sites = DDGS().text(request, region=region, max_results=max_results)
         except Exception as e:
+            logger.error(f"Failed to get search results: {e}")
             raise HTTPException(
                 status_code=500,
-                detail=f"Failed to get search results: {e}"
+                detail="Failed to get search results: connect with support"
             )
 
         if len(sites) == 0:
