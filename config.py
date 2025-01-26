@@ -6,6 +6,8 @@ class Settings(BaseSettings):
 
     api_link: str
     openai_api_link: str
+    openai_api_key: str
+    default_model: str
     files_dir: str = 'assets/images'
     upload_dir: str = 'static'
     date_format: str = '%Y-%m-%d'

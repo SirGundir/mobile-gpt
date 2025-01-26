@@ -5,6 +5,11 @@ from fastapi.staticfiles import StaticFiles
 from loguru import logger
 
 from .v1 import router as router_v1
+from api.utils import check_openai_api
+
+logger.debug('Checking OpenAI API ...')
+if not check_openai_api():
+    exit(-1)
 
 app = FastAPI(
     title='MobileGPT',
